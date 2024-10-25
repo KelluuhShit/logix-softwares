@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceCard from '../components/ServiceCard';
+import PackageCard from '../components/PackageCard';
 
 const Services = () => {
   const services = [
@@ -42,20 +42,34 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-green-400">
+    <div className="min-h-screen bg-gray-900 text-green-400 font-sen">
       <div className="max-w-6xl mx-auto p-8">
         <h2 className="text-5xl font-bold mb-10 text-center">Our Services & Pricing</h2>
         <div className="space-y-16">
-          {services.map((servicePackage, index) => (
-            <div key={index}>
-              <h3 className="text-3xl font-semibold mb-6">{servicePackage.title}</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {servicePackage.items.map((item, idx) => (
-                  <ServiceCard key={idx} title={item.name} price={item.price} description={item.description} />
-                ))}
+          {/* Display packages in a row with wrapping */}
+          <div className="flex flex-wrap justify-around align-center space-x-4">
+            {services.slice(0, 3).map((servicePackage, index) => ( // Only display the first three packages
+              <div key={index} className="flex-1 min-w-[250px] max-w-[300px] mb-4"> {/* Set a min and max width for responsive behavior */}
+                <PackageCard title={servicePackage.title} items={servicePackage.items} />
               </div>
+            ))}
+          </div>
+          {/* Additional Services Section */}
+          <div>
+            <h3 className="text-3xl font-semibold mb-6 text-center">{services[3].title}</h3>
+            <div className="space-y-4">
+              {services[3].items.map((item, itemIndex) => (
+                <div 
+                  key={itemIndex} 
+                  className="border border-green-400 rounded-lg p-4 text-center"
+                >
+                  <h4 className="text-lg font-semibold text-green-400 mb-2">{item.name}</h4>
+                  <p className="text-green-600 font-medium mb-1">{item.price}</p>
+                  <p className="text-gray-500">{item.description}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

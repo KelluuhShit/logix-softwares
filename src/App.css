@@ -8,6 +8,16 @@ body {
   @apply font-sen;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add this to your styles.css or relevant CSS file */
+.min-h-70 {
+  height: 17.5rem; /* or any desired height */
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
